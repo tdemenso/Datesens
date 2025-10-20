@@ -176,97 +176,128 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Judet_1_0(feature) {
-            if (feature.properties['NrMembri'] >= 0.000000 && feature.properties['NrMembri'] <= 0.000000 ) {
-                return {
-                pane: 'pane_Judet_1',
-                opacity: 1,
-                color: 'rgba(217,217,217,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,0,0,0.6)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['NrMembri'] >= 1.000000 && feature.properties['NrMembri'] <= 5.000000 ) {
-                return {
-                pane: 'pane_Judet_1',
-                opacity: 1,
-                color: 'rgba(217,217,217,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(138,0,0,0.6)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['NrMembri'] >= 5.000000 && feature.properties['NrMembri'] <= 15.000000 ) {
-                return {
-                pane: 'pane_Judet_1',
-                opacity: 1,
-                color: 'rgba(217,217,217,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(230,145,0,0.6)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['NrMembri'] >= 15.000000 && feature.properties['NrMembri'] <= 30.000000 ) {
-                return {
-                pane: 'pane_Judet_1',
-                opacity: 1,
-                color: 'rgba(217,217,217,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,255,0,0.6)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['NrMembri'] >= 30.000000 && feature.properties['NrMembri'] <= 50.000000 ) {
-                return {
-                pane: 'pane_Judet_1',
-                opacity: 1,
-                color: 'rgba(217,217,217,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(58,163,0,0.6)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['NrMembri'] >= 50.000000 && feature.properties['NrMembri'] <= 10000.000000 ) {
-                return {
-                pane: 'pane_Judet_1',
-                opacity: 1,
-                color: 'rgba(217,217,217,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,81,129,0.6)',
-                interactive: true,
-            }
-            }
+function style_Judet_1_0(feature) {
+    // Use a single evaluation chain with non-overlapping ranges.
+    var val = feature.properties['NrMembri'];
+    // coerce to number where possible
+    if (val !== null && val !== undefined) {
+        val = parseFloat(val);
+    } else {
+        val = NaN;
+    }
+
+    // 0 exactly
+    if (!isNaN(val) && val === 0) {
+        return {
+            pane: 'pane_Judet_1',
+            opacity: 1,
+            color: 'rgba(217,217,217,1.0)',
+            dashArray: '',
+            lineCap: 'butt',
+            lineJoin: 'miter',
+            weight: 1.0,
+            fill: true,
+            fillOpacity: 1,
+            fillColor: 'rgba(0,0,0,0.6)',
+            interactive: true,
+        };
+    }
+    // >0 up to and including 5
+    if (!isNaN(val) && val > 0 && val <= 5) {
+        return {
+            pane: 'pane_Judet_1',
+            opacity: 1,
+            color: 'rgba(217,217,217,1.0)',
+            dashArray: '',
+            lineCap: 'butt',
+            lineJoin: 'miter',
+            weight: 1.0,
+            fill: true,
+            fillOpacity: 1,
+            fillColor: 'rgba(138,0,0,0.6)',
+            interactive: true,
+        };
+    }
+    // >5 up to and including 15
+    if (!isNaN(val) && val > 5 && val <= 15) {
+        return {
+            pane: 'pane_Judet_1',
+            opacity: 1,
+            color: 'rgba(217,217,217,1.0)',
+            dashArray: '',
+            lineCap: 'butt',
+            lineJoin: 'miter',
+            weight: 1.0,
+            fill: true,
+            fillOpacity: 1,
+            fillColor: 'rgba(230,145,0,0.6)',
+            interactive: true,
+        };
+    }
+    // >15 up to and including 30
+    if (!isNaN(val) && val > 15 && val <= 30) {
+        return {
+            pane: 'pane_Judet_1',
+            opacity: 1,
+            color: 'rgba(217,217,217,1.0)',
+            dashArray: '',
+            lineCap: 'butt',
+            lineJoin: 'miter',
+            weight: 1.0,
+            fill: true,
+            fillOpacity: 1,
+            fillColor: 'rgba(255,255,0,0.6)',
+            interactive: true,
+        };
+    }
+    // >30 up to and including 50
+    if (!isNaN(val) && val > 30 && val <= 50) {
+        return {
+            pane: 'pane_Judet_1',
+            opacity: 1,
+            color: 'rgba(217,217,217,1.0)',
+            dashArray: '',
+            lineCap: 'butt',
+            lineJoin: 'miter',
+            weight: 1.0,
+            fill: true,
+            fillOpacity: 1,
+            fillColor: 'rgba(58,163,0,0.6)',
+            interactive: true,
+        };
+    }
+    // >50
+    if (!isNaN(val) && val > 50) {
+        return {
+            pane: 'pane_Judet_1',
+            opacity: 1,
+            color: 'rgba(217,217,217,1.0)',
+            dashArray: '',
+            lineCap: 'butt',
+            lineJoin: 'miter',
+            weight: 1.0,
+            fill: true,
+            fillOpacity: 1,
+            fillColor: 'rgba(0,81,129,0.6)',
+            interactive: true,
+        };
+    }
+
+    // Fallback (when value is NaN or doesn't match any range)
+    return {
+        pane: 'pane_Judet_1',
+        opacity: 1,
+        color: 'rgba(217,217,217,1.0)',
+        dashArray: '',
+        lineCap: 'butt',
+        lineJoin: 'miter',
+        weight: 1.0,
+        fill: true,
+        fillOpacity: 1,
+        fillColor: 'rgba(200,200,200,0.6)',
+        interactive: true,
+    };
+}
         }
         map.createPane('pane_Judet_1');
         map.getPane('pane_Judet_1').style.zIndex = 401;
