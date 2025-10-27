@@ -425,3 +425,8 @@ td video {
     color: orangered;
 	font-size: 15px;
 }
+
+.esri-basemap canvas {
+  filter: saturate(0.5) brightness(0.98) contrast(0.95) !important;
+  /* tweak values above: saturate(0.4) is more muted, saturate(0.7) is lighter */
+}
