@@ -1,19 +1,15 @@
 var wms_layers = [];
 
-var lyr_ESRIBaseMap_20251027_103500_0 = new ol.layer.Image({
-        opacity: 1,
-        
-    title: 'ESRI BaseMap_2025-10-27_10-35-00<br />' ,
-        
-        
-        source: new ol.source.ImageStatic({
-            url: "./layers/ESRIBaseMap_20251027_103500_0.png",
-            attributions: ' ',
-            projection: 'EPSG:3857',
-            alwaysInRange: true,
-            imageExtent: [2890583.375711, 5516921.136551, 2919347.448663, 5550398.007704]
-        })
-    });
+var lyr_ESRIBaseMap_20251027_103500_0 = new ol.layer.Tile({
+  opacity: 1,
+  title: 'ESRI World Imagery',
+  source: new ol.source.XYZ({
+    attributions: 'Tiles © Esri',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    projection: 'EPSG:3857',
+    maxZoom: 19
+  })
+});
 var format_ProcenteSENS_1 = new ol.format.GeoJSON();
 var features_ProcenteSENS_1 = format_ProcenteSENS_1.readFeatures(json_ProcenteSENS_1, 
             {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:3857'});
