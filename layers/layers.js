@@ -1,14 +1,35 @@
 var wms_layers = [];
 
-var lyr_ESRIBaseMap_20251027_103500_0 = new ol.layer.Tile({
-  opacity: 1,
-  title: 'ESRI World Imagery',
-  source: new ol.source.XYZ({
-    attributions: 'Tiles © Esri',
-    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    projection: 'EPSG:3857',
-    maxZoom: 19
-  })
+var lyr_ESRIBaseMap_20251027_103500_0 = new ol.layer.Group({
+  title: 'ESRI World Imagery (Hybrid)',
+  opacity: 0.7,
+  layers: [
+    // Satellite imagery (base)
+    new ol.layer.Tile({
+      opacity: 1,
+      title: 'ESRI World Imagery (satellite)',
+      source: new ol.source.XYZ({
+        attributions: 'Tiles © Esri',
+        url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        projection: 'EPSG:3857',
+        maxZoom: 19,
+        crossOrigin: 'anonymous'
+      })
+    }),
+    // Labels / reference layer on top
+    new ol.layer.Tile({
+      opacity: 1,
+      title: 'ESRI Reference (labels)',
+      source: new ol.source.XYZ({
+        attributions: 'Labels © Esri',
+        url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',
+        projection: 'EPSG:3857',
+        maxZoom: 19,
+        crossOrigin: 'anonymous'
+      }),
+      declutter: true
+    })
+  ]
 });
 var format_ProcenteSENS_1 = new ol.format.GeoJSON();
 var features_ProcenteSENS_1 = format_ProcenteSENS_1.readFeatures(json_ProcenteSENS_1, 
